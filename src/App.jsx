@@ -1,5 +1,8 @@
 import React from "react";
 import newsData from "/mockdata";
+
+import Card from "./components/Card";
+
 function App() {
   console.log(newsData);
   const title = "Top news"
@@ -9,6 +12,7 @@ function App() {
       <ul>
         {newsData.news.map((newsItem => <li>{newsItem.title}</li>))}
       </ul>
+      <Card />
     </>
   );
 }
