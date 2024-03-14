@@ -11,7 +11,7 @@ function App() {
       <h1>{title}</h1>
       <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
         {newsData.news.map(newsItem => (
-          <Card key={newsItem.id} title={newsItem.title} text={newsItem.text} image={newsItem.image} publish_date={newsItem.publish_date} />
+          <Card key={newsItem.id} {...newsItem} />
         ))}
       </div>
     </div>
