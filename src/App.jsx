@@ -5,15 +5,16 @@ import Card from "./components/Card";
 
 function App() {
   console.log(newsData);
-  const title = "Top news"
+  const title = "Top news";
   return (
-    <>
+    <div className="container px-3 is-max-desktop mb-5">
       <h1>{title}</h1>
-      <ul>
-        {newsData.news.map((newsItem => <li>{newsItem.title}</li>))}
-      </ul>
-      <Card />
-    </>
+      <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
+        {newsData.news.map(newsItem => (
+          <Card />
+        ))}
+      </div>
+    </div>
   );
 }
 export default App;
