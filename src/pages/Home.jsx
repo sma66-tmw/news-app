@@ -3,6 +3,10 @@ import Card from "../components/Card";
 import newsData from "/mockData";
 
 export default function Home() {
+
+  const selectedTopic = "FINANCE";
+  const selectedSource = "FOX";
+
   return (
     <div className="container px-3 is-max-desktop mb-5">
     <div className="mb-5 is-justify-content-space-between is-flex">
@@ -10,7 +14,7 @@ export default function Home() {
         <label className="label">Topic</label>
         <div className="control">
           <div className="select is-rounded">
-            <select>
+            <select value={selectedTopic}>
                 <option value="ENVIRONMENT">ENVIRONMENT</option>
                 <option value="FINANCE">FINANCE</option>
                 <option value="SPORTS">SPORTS</option>
@@ -22,7 +26,7 @@ export default function Home() {
         <label className="label">News Source</label>
         <div className="control">
           <div className="select is-rounded">
-            <select>
+            <select value={selectedSource}>
                 <option value="CNN">CNN</option>
                 <option value="BBC">BBC</option>
                 <option value="FOX">FOX</option>
