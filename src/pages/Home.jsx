@@ -3,12 +3,13 @@ import { useState } from "react";
 import Card from "../components/Card";
 
 import newsData from "/mockData";
+import {SOURCES_LIST, TOPICS} from "../utils/constants"
 
 export default function Home() {
 
   const [filters, setFilters] = useState({
-    topic: "FINANCE",
-    source: "FOX"
+    topic: TOPICS[0],
+    source: SOURCES_LIST[0]
   })
 
   function handleTopicChange(event) {
@@ -26,9 +27,7 @@ export default function Home() {
         <div className="control">
           <div className="select is-rounded">
             <select value={filters.topic} onChange={handleTopicChange}>
-                <option value="ENVIRONMENT">ENVIRONMENT</option>
-                <option value="FINANCE">FINANCE</option>
-                <option value="SPORTS">SPORTS</option>
+                {TOPICS.map(topic => <option key={topic} value={topic}>{topic}</option>)}
             </select>
           </div>
         </div>
@@ -38,9 +37,7 @@ export default function Home() {
         <div className="control">
           <div className="select is-rounded">
             <select value={filters.source} onChange={handleSourceChange}>
-                <option value="CNN">CNN</option>
-                <option value="BBC">BBC</option>
-                <option value="FOX">FOX</option>
+                {SOURCES_LIST.map(source => <option key={source} value={source}>{source}</option>)}
             </select>
           </div>
         </div>
