@@ -6,14 +6,16 @@ import newsData from "/mockData";
 
 export default function Home() {
 
-  const [selectedTopic, setSelectedTopic] = useState("FINANCE");
-  const [selectedSource, setSelectedSource] = useState("FOX");
+  const [filters, setFilters] = useState({
+    topic: "FINANCE",
+    source: "FOX"
+  })
 
   function handleTopicChange(event) {
-    setSelectedTopic(event.target.value);
+    setFilters({...filters, topic: event.target.value});
   }
   function handleSourceChange(event) {
-    setSelectedSource(event.target.value);
+    setFilters({...filters, source: event.target.value});
   }
 
   return (
@@ -23,7 +25,7 @@ export default function Home() {
         <label className="label">Topic</label>
         <div className="control">
           <div className="select is-rounded">
-            <select value={selectedTopic} onChange={handleTopicChange}>
+            <select value={filters.topic} onChange={handleTopicChange}>
                 <option value="ENVIRONMENT">ENVIRONMENT</option>
                 <option value="FINANCE">FINANCE</option>
                 <option value="SPORTS">SPORTS</option>
@@ -35,7 +37,7 @@ export default function Home() {
         <label className="label">News Source</label>
         <div className="control">
           <div className="select is-rounded">
-            <select value={selectedSource} onChange={handleSourceChange}>
+            <select value={filters.source} onChange={handleSourceChange}>
                 <option value="CNN">CNN</option>
                 <option value="BBC">BBC</option>
                 <option value="FOX">FOX</option>
