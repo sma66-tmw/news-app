@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Card from "../components/Card";
 
@@ -12,6 +12,11 @@ export default function Home() {
     source: SOURCES_LIST[0]
   })
 
+  //useEffect with an empty dependency array. This will run on the first render only
+  useEffect(() => {
+    console.log("Home component rendered")
+  }, []);
+
   function handleTopicChange(event) {
     setFilters({...filters, topic: event.target.value});
   }
@@ -19,6 +24,7 @@ export default function Home() {
     setFilters({...filters, source: event.target.value});
   }
 
+  console.log("rendering Home component");
   return (
     <div className="container px-3 is-max-desktop mb-5">
     <div className="mb-5 is-justify-content-space-between is-flex">
