@@ -1,11 +1,13 @@
+import { useState } from "react";
+
 import Card from "../components/Card";
 
 import newsData from "/mockData";
 
 export default function Home() {
 
-  const selectedTopic = "FINANCE";
-  const selectedSource = "FOX";
+  const [selectedTopic, setSelectedTopic] = useState("FINANCE");
+  const [selectedSource, setSelectedSource] = useState("FOX");
 
   return (
     <div className="container px-3 is-max-desktop mb-5">
