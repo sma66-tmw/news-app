@@ -1,5 +1,15 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+import UserContext from "../UserContext";
+
 function Navigation() {
+  const { isPaidUser, setIsPaidUser } = useContext(UserContext);
+
+  function handleCheck(event) {
+    setIsPaidUser(event.target.checked);
+  }
+
   return (
     <nav
       className="navbar mb-5 is-light px-3"
@@ -14,7 +24,7 @@ function Navigation() {
         </div>
         <div className="navbar-end">
             <label className="checkbox pt-3">
-            <input type="checkbox" className="mr-1"/>
+            <input type="checkbox" onChange={handleCheck} checked={isPaidUser} className="mr-1"/>
                 Paid user
             </label>
         </div>
