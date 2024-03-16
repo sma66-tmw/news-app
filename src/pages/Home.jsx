@@ -12,10 +12,10 @@ export default function Home() {
     source: SOURCES_LIST[0]
   })
 
-  //useEffect with an empty dependency array. This will run on the first render only
+  //useEffect with one dependency. This will run whenever the dependency value updates
   useEffect(() => {
-    console.log("Home component rendered")
-  }, []);
+    console.log("the filters were updated")
+  }, [filters]);
 
   function handleTopicChange(event) {
     setFilters({...filters, topic: event.target.value});
