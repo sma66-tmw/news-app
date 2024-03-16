@@ -61,6 +61,13 @@ export default function Home() {
   console.log("rendering Home component");
   return (
     <div className="container px-3 is-max-desktop mb-5">
+      <nav className="navbar mb-5 is-light px-3" role="navigation" aria-label="main navigation">
+        <div className="navbar-brand">
+            <a class="navbar-item" href="/">
+            <h3 className="title has-text-weight-bold">News App</h3>
+            </a>
+        </div>
+      </nav>
       <h3 className="title">{currentTime}</h3>
     <div className="mb-5 is-justify-content-space-between is-flex">
       <div className="field">
