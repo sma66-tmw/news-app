@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import Card from "../components/Card";
 
-import newsData from "/mockData";
 import {SOURCES_LIST, TOPICS} from "../utils/constants"
 
 export default function Home() {
@@ -11,6 +10,7 @@ export default function Home() {
     topic: TOPICS[0],
     source: SOURCES_LIST[0]
   })
+  const [newsList, setNewsList] = useState([]);
 
   //useEffect with one dependency. This will run whenever the dependency value updates
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function Home() {
       </div>
     </div>
       <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
-        {newsData.news.map((newsItem) => (
+        {newsList.map((newsItem) => (
           <Card key={newsItem.id} {...newsItem} />
         ))}
       </div>
