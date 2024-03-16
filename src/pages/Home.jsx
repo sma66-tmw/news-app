@@ -60,50 +60,43 @@ export default function Home() {
 
   console.log("rendering Home component");
   return (
-    <div className="container px-3 is-max-desktop mb-5">
-      <nav className="navbar mb-5 is-light px-3" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-            <a class="navbar-item" href="/">
-            <h3 className="title has-text-weight-bold">News App</h3>
-            </a>
-        </div>
-      </nav>
+    <>
       <h3 className="title">{currentTime}</h3>
-    <div className="mb-5 is-justify-content-space-between is-flex">
-      <div className="field">
-        <label className="label">Topic</label>
-        <div className="control">
-          <div className="select is-rounded">
-            <select value={filters.topic} onChange={handleTopicChange}>
-                {TOPICS.map(topic => <option key={topic} value={topic}>{topic}</option>)}
-            </select>
+      <div className="mb-5 is-justify-content-space-between is-flex">
+        <div className="field">
+          <label className="label">Topic</label>
+          <div className="control">
+            <div className="select is-rounded">
+              <select value={filters.topic} onChange={handleTopicChange}>
+                  {TOPICS.map(topic => <option key={topic} value={topic}>{topic}</option>)}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div className="field">
+          <label className="label">News Source</label>
+          <div className="control">
+            <div className="select is-rounded">
+              <select value={filters.source} onChange={handleSourceChange}>
+                  {SOURCES_LIST.map(source => <option key={source} value={source}>{source}</option>)}
+              </select>
+            </div>
           </div>
         </div>
       </div>
-      <div className="field">
-        <label className="label">News Source</label>
-        <div className="control">
-          <div className="select is-rounded">
-            <select value={filters.source} onChange={handleSourceChange}>
-                {SOURCES_LIST.map(source => <option key={source} value={source}>{source}</option>)}
-            </select>
-          </div>
-        </div>
+      <div className="has-text-centered mb-5">
+        <RotatingLines
+          visible={isLoading}
+          height="96"
+          width="96"
+          color="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          ariaLabel="rotating-lines-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          />
       </div>
-    </div>
-    <div className="has-text-centered mb-5">
-      <RotatingLines
-        visible={isLoading}
-        height="96"
-        width="96"
-        color="grey"
-        strokeWidth="5"
-        animationDuration="0.75"
-        ariaLabel="rotating-lines-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-        />
-    </div>
       {newsList.length ? (
         <>
           <h1 className="title has-text-centered mb-5">
@@ -135,6 +128,6 @@ export default function Home() {
           No news articles to show
         </h1>
       )}
-    </div>
+    </>
   );
 }
