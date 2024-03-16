@@ -1,8 +1,12 @@
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+
+import UserContext from "../UserContext";
 
 export default function Article() {
 
   const { state: article } = useLocation();
+  const { isPaidUser } = useContext(UserContext);
 
   return (
     <div className="article container px-3 is-max-desktop mb-5">
@@ -28,9 +32,15 @@ export default function Article() {
             <br />
             <p>{article.text}</p>
             <h6 className="title has-text-centered my-5">
-              <a href={article.url} target="_blank">
-                View full published article &#x2197;
-              </a>
+              {isPaidUser ? (
+                <a href={article.url} target="_blank">
+                  View full published article &#x2197;
+                </a>
+              ) : (
+                <div class="notification is-info">
+                    Become a paid user to access the link to the article
+                </div>
+              )}
             </h6>
           </div>
         </div>
