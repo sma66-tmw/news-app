@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Card from "../components/Card";
+import useCurrentTime from "../hooks/useCurrentTime";
 
 import {SOURCES_LIST, TOPICS, API_KEY} from "../utils/constants"
 
@@ -12,6 +13,7 @@ export default function Home() {
   })
   const [newsList, setNewsList] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState('');
+  const currentTime = useCurrentTime();
 
   const filteredNewsList = newsList.filter(newsItem => {
     return newsItem.title?.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
@@ -50,6 +52,7 @@ export default function Home() {
   console.log("rendering Home component");
   return (
     <div className="container px-3 is-max-desktop mb-5">
+      <h3 className="title">{currentTime}</h3>
     <div className="mb-5 is-justify-content-space-between is-flex">
       <div className="field">
         <label className="label">Topic</label>
