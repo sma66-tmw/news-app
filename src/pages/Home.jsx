@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { RotatingLines } from 'react-loader-spinner'
 
 import Card from "../components/Card";
 import useCurrentTime from "../hooks/useCurrentTime";
@@ -14,6 +15,7 @@ export default function Home() {
   const [newsList, setNewsList] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState('');
   const currentTime = useCurrentTime();
+  const [isLoading, setIsLoading] = useState(false);
 
   const filteredNewsList = newsList.filter(newsItem => {
     return newsItem.title?.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
@@ -27,6 +29,7 @@ export default function Home() {
   
 
   async function fetchNews(filters) {
+    setIsLoading(true);
     const response = await fetch(
       `https://api.worldnewsapi.com/search-news?text=${filters.topic}&news-sources=${filters.source}&api-key=${API_KEY}`,
       {
@@ -37,6 +40,7 @@ export default function Home() {
       const newsList = await response.json();
       setNewsList(newsList.news);
     } else alert("Service usage exceeded for today!");
+    setIsLoading(false)
   };
 
   function handleTopicChange(event) {
@@ -75,6 +79,19 @@ export default function Home() {
         </div>
       </div>
     </div>
+    <div className="has-text-centered mb-5">
+      <RotatingLines
+        visible={isLoading}
+        height="96"
+        width="96"
+        color="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        ariaLabel="rotating-lines-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+        />
+    </div>
       {newsList.length ? (
         <>
           <h1 className="title has-text-centered mb-5">
@@ -96,7 +113,7 @@ export default function Home() {
             ))}
           </div>
         </>
-        ) : (
+        ) : !isLoading && (
         <h1 className="title has-text-centered">
           No news articles to show
         </h1>
