@@ -11,6 +11,7 @@ export default function Home() {
     source: SOURCES_LIST[0]
   })
   const [newsList, setNewsList] = useState([]);
+  const [searchInputValue, setSearchInputValue] = useState('');
   const numberOfArticles = newsList.length;
 
   useEffect(() => {
@@ -36,6 +37,9 @@ export default function Home() {
   }
   function handleSourceChange(event) {
     setFilters({...filters, source: event.target.value});
+  }
+  function handleSearchInputChange(event) {
+    setSearchInputValue(event.target.value);
   }
 
   console.log("rendering Home component");
@@ -68,6 +72,16 @@ export default function Home() {
           <h1 className="title has-text-centered mb-5">
             Showing {numberOfArticles} articles
           </h1>
+          <div className="has-text-centered mb-5">
+            <input
+              className="input is-rounded"
+              type="text"
+              placeholder="Search articles"
+              style={{maxWidth: '250px'}}
+              value={searchInputValue}
+              onChange={handleSearchInputChange}
+            />
+          </div>
           <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
             {newsList.map((newsItem) => (
               <Card key={newsItem.id} {...newsItem} />
