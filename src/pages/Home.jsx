@@ -14,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchNews(filters);
-  }, []);
+  }, [filters]);
   
 
   async function fetchNews(filters) {
