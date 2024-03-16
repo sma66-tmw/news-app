@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Navigation() {
   return (
     <nav
@@ -6,9 +7,9 @@ function Navigation() {
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        <a className="navbar-item" href="/">
+        <Link to="/">
           <h3 className="title has-text-weight-bold">News App</h3>
-        </a>
+        </Link>
       </div>
     </nav>
   );
