@@ -12,7 +12,12 @@ export default function Home() {
   })
   const [newsList, setNewsList] = useState([]);
   const [searchInputValue, setSearchInputValue] = useState('');
-  const numberOfArticles = newsList.length;
+
+  const filteredNewsList = newsList.filter(newsItem => {
+    return newsItem.title?.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
+    newsItem.text?.toLowerCase().includes(searchInputValue?.toLowerCase())
+  })
+  const numberOfArticles = filteredNewsList.length;
 
   useEffect(() => {
     fetchNews(filters);
@@ -83,7 +88,7 @@ export default function Home() {
             />
           </div>
           <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
-            {newsList.map((newsItem) => (
+            {filteredNewsList.map((newsItem) => (
               <Card key={newsItem.id} {...newsItem} />
             ))}
           </div>
