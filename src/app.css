@@ -13,3 +13,9 @@
     overflow: hidden;
     -webkit-box-orient: vertical;
 }
+.field {
+    max-width: 13rem;
+}
+.article img {
+    object-fit: contain;
+}

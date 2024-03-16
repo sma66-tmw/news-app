@@ -2,7 +2,9 @@ import {
     createBrowserRouter,
     RouterProvider
   } from "react-router-dom";
+
   import Home from "./pages/Home";
+  import Article from "./pages/Article";
   import Layout from "./components/Layout";
   
   function ErrorElement() {
@@ -18,7 +20,11 @@ import {
         {
             path: "",
             element: <Home />
-        }
+        },
+        {
+          path: "/article/:title",
+          element: <Article />,
+        },
       ]
     },
   ]);
