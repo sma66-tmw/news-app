@@ -52,6 +52,9 @@ export default function Home() {
   function handleSearchInputChange(event) {
     setSearchInputValue(event.target.value);
   }
+  function handleClear() {
+    setSearchInputValue('');
+  }
 
   console.log("rendering Home component");
   return (
@@ -106,6 +109,10 @@ export default function Home() {
               value={searchInputValue}
               onChange={handleSearchInputChange}
             />
+            <button className="button is-danger is-outlined is-rounded ml-4" onClick={handleClear}>
+              <span>Clear</span>
+              <span className="icon is-small">&#10005; </span>
+            </button>
           </div>
           <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
             {filteredNewsList.map((newsItem) => (
