@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { RotatingLines } from 'react-loader-spinner'
 
 import Card from "../components/Card";
@@ -16,6 +16,7 @@ export default function Home() {
   const [searchInputValue, setSearchInputValue] = useState('');
   const currentTime = useCurrentTime();
   const [isLoading, setIsLoading] = useState(false);
+  const searchInputElRef = useRef();
 
   const filteredNewsList = newsList.filter(newsItem => {
     return newsItem.title?.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
@@ -54,6 +55,7 @@ export default function Home() {
   }
   function handleClear() {
     setSearchInputValue('');
+    searchInputElRef.current.focus();
   }
 
   console.log("rendering Home component");
@@ -102,6 +104,7 @@ export default function Home() {
           </h1>
           <div className="has-text-centered mb-5">
             <input
+              ref={searchInputElRef}
               className="input is-rounded"
               type="text"
               placeholder="Search articles"
