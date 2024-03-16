@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import Card from "../components/Card";
 
-import {SOURCES_LIST, TOPICS} from "../utils/constants"
+import {SOURCES_LIST, TOPICS, API_KEY} from "../utils/constants"
 
 export default function Home() {
 
@@ -12,10 +12,23 @@ export default function Home() {
   })
   const [newsList, setNewsList] = useState([]);
 
-  //useEffect with one dependency. This will run whenever the dependency value updates
   useEffect(() => {
-    console.log("the filters were updated")
-  }, [filters]);
+    fetchNews(filters);
+  }, []);
+  
+
+  async function fetchNews(filters) {
+    const response = await fetch(
+      `https://api.worldnewsapi.com/search-news?text=${filters.topic}&news-sources=${filters.source}&api-key=${API_KEY}`,
+      {
+        cache: "force-cache",
+      }
+    );
+    if (response.ok) {
+      const newsList = await response.json();
+      setNewsList(newsList.news);
+    } else alert("Service usage exceeded for today!");
+  };
 
   function handleTopicChange(event) {
     setFilters({...filters, topic: event.target.value});

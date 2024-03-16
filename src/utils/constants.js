@@ -19,3 +19,5 @@ export const TOPICS = [
   "Movie",
   "Technology",
 ];
+
+export const API_KEY = "bbf059e1d8024574ae1f0cf71ceabcf3";
