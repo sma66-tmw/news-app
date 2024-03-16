@@ -11,6 +11,7 @@ export default function Home() {
     source: SOURCES_LIST[0]
   })
   const [newsList, setNewsList] = useState([]);
+  const numberOfArticles = newsList.length;
 
   useEffect(() => {
     fetchNews(filters);
@@ -63,11 +64,16 @@ export default function Home() {
       </div>
     </div>
       {newsList.length ? (
-        <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
-          {newsList.map((newsItem) => (
-            <Card key={newsItem.id} {...newsItem} />
-          ))}
-        </div>
+        <>
+          <h1 className="title has-text-centered mb-5">
+            Showing {numberOfArticles} articles
+          </h1>
+          <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
+            {newsList.map((newsItem) => (
+              <Card key={newsItem.id} {...newsItem} />
+            ))}
+          </div>
+        </>
         ) : (
         <h1 className="title has-text-centered">
           No news articles to show
