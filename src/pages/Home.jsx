@@ -62,11 +62,17 @@ export default function Home() {
         </div>
       </div>
     </div>
-      <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
-        {newsList.map((newsItem) => (
-          <Card key={newsItem.id} {...newsItem} />
-        ))}
-      </div>
+      {newsList.length ? (
+        <div className="news-list columns is-flex-wrap-wrap is-justify-content-space-between">
+          {newsList.map((newsItem) => (
+            <Card key={newsItem.id} {...newsItem} />
+          ))}
+        </div>
+        ) : (
+        <h1 className="title has-text-centered">
+          No news articles to show
+        </h1>
+      )}
     </div>
   );
 }
